@@ -1,0 +1,25 @@
+{
+  "name": "currency-viewer",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.1.1",
+    "react-bootstrap": "^0.31.5",
+    "react-dom": "^16.1.1",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "build:css": "lessc src/styles/app.less src/styles/app.css",
+    "watch:css": "less-watch-compiler src/styles/ src/styles/ app.less",
+    "build:js": "react-scripts build",
+    "watch:js": "react-scripts start",
+    "build": "npm-run-all build:*",
+    "start": "npm-run-all --parallel watch:*",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "less-watch-compiler": "^1.8.0",
+    "npm-run-all": "^4.1.2"
+  }
+}
