@@ -6,7 +6,8 @@
     "react": "^16.1.1",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.1.1",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "redux-thunk-actions": "^1.1.6"
   },
   "scripts": {
     "build:css": "lessc src/styles/app.less src/styles/app.css",
