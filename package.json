@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.1.1",
     "react-scripts": "1.0.17",
-    "redux-thunk-actions": "^1.1.6"
+    "redux-thunk-actions": "^1.1.6",
+    "shortid": "^2.2.8"
   },
   "scripts": {
     "build:css": "lessc src/styles/app.less src/styles/app.css",
