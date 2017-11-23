@@ -6,16 +6,24 @@ import shortid from 'shortid';
 import {Rate} from './Rate';
 import {ratePropTypes} from '../model';
 
-export const CurrencyRates = ({rates}) =>
-    rates.map(rate => (
-        <Col sm={4}>
-            <Rate
-                key={shortid.generate()}
-                rate={rate}
-            />
-        </Col>
-    ))
+export class CurrencyRates extends React.Component {
+    componentWillMount () {
+        this.props.getRates()
+    }
+
+    render () {
+        return this.props.rates.map(rate => (
+            <Col sm={4}>
+                <Rate
+                    key={shortid.generate()}
+                    rate={rate}
+                />
+            </Col>
+        ))
+    }
+}
 
 CurrencyRates.PropTypes = {
-    rates: PropTypes.arrayOf(ratePropTypes)
+    rates: PropTypes.arrayOf(ratePropTypes),
+    getRates: PropTypes.func.isRequired
 }

@@ -1,4 +1,5 @@
 import {GET_RATES, SUCCEEDED} from '../actions/types';
+import {extractFixerIoRates} from '../utils';
 
 const initialState = {
     rates: [{
@@ -26,9 +27,10 @@ const initialState = {
 export const ratesReducer = (state = initialState, action) => {
 
     if (action.type === `${GET_RATES}${SUCCEEDED}`) {
+        const {payload = {}} = action;
         return {
             ...state,
-            rates: action.payload
+            rates: extractFixerIoRates(payload)
         }
     }
 

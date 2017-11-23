@@ -1,4 +1,4 @@
-import {ratesReducer} from "./index";
+import {ratesReducer} from "./ratesReducer";
 import {GET_RATES, SUCCEEDED} from '../actions/types';
 
 describe('rateReducer tests', () => {
@@ -16,21 +16,30 @@ describe('rateReducer tests', () => {
     })
 
     it('returns rates list on GET_RATES_SUCCCEDED action', () => {
-        const payload = [
+        const payload = {
+            base: 'RUB',
+            date: '2017-11-23',
+            rates: {
+                USD: 0.017113,
+                EUR: 0.014444
+            }
+        }
+
+        const expectedRates = [
             {
                 base: 'RUB',
                 currency: 'USD',
-                value: 59
+                value: '58.44'
             },
             {
                 base: 'RUB',
                 currency: 'EUR',
-                value: 70
+                value: '69.23'
             }
         ]
 
         const expectedState = {
-            rates: payload
+            rates: expectedRates
         }
 
         expect(ratesReducer(initialState, {type: `${GET_RATES}${SUCCEEDED}`, payload})).toEqual(expectedState);
