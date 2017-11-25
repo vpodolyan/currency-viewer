@@ -1,14 +1,35 @@
-/* This class is just to test that everything is working */
-.test-class {
-    border: 1;
+.rate-wrapper {
+    margin-bottom: 12px; 
 }
 
 .rate {
-    margin: 12px;
+    padding-top: 100%;
+    position: relative;
     border: 1px solid black;
     border-radius: 4px;
-    height: 80px;
-    text-align: center;
-    line-height: 80px;
-    font-size: 1.5em;
+
+    .body {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+
+        .cross {
+            font-size: 400%;
+            color: darkgray;
+        }
+    }
+
+    &.new {
+        border-style: dashed;
+        cursor: pointer;
+
+        &:hover {
+            background-color: lightgray;
+        }
+    }
 }

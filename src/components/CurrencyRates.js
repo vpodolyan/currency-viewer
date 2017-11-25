@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Col from 'react-bootstrap/lib/Col';
 import shortid from 'shortid';
 
+import {RateWrapper} from "./RateWrapper";
 import {Rate} from './Rate';
+import {NewRate} from './NewRate';
 import {ratePropTypes} from '../model';
 
 export class CurrencyRates extends React.Component {
@@ -12,14 +13,23 @@ export class CurrencyRates extends React.Component {
     }
 
     render () {
-        return this.props.rates.map(rate => (
-            <Col sm={4}>
-                <Rate
-                    key={shortid.generate()}
-                    rate={rate}
-                />
-            </Col>
-        ))
+        return (
+            <div>
+                {
+                    this.props.rates.map(rate => (
+                        <RateWrapper>
+                            <Rate
+                                key={shortid.generate()}
+                                rate={rate}
+                            />
+                        </RateWrapper>
+                    ))
+                }
+                <RateWrapper>
+                    <NewRate />
+                </RateWrapper>
+            </div>
+        )
     }
 }
 

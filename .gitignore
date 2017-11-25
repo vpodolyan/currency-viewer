@@ -68,3 +68,6 @@ typings/
 .env.production.local
 *.orig
 *.code-workspace
+
+# styles
+*.css
