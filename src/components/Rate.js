@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import {ratePropTypes} from '../model';
 
 export const Rate = ({rate}) => (
-    `${rate.currency} - ${rate.value} ${rate.base}`
+    <div className="rate">
+        {`1 ${rate.currency} = ${rate.value} ${rate.base}`}
+    </div>
 )
 
 Rate.PropTypes = {
