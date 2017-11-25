@@ -1,5 +1,5 @@
 import {CurrencyApi} from '../api/CurrencyApi';
-import {GET_RATES} from '../actions/types';
+import {GET_RATES, ADD_RATE} from '../actions/types';
 import {createActionThunk} from 'redux-thunk-actions';
 
 export class RatesActions {
@@ -7,5 +7,19 @@ export class RatesActions {
         this.api = new CurrencyApi();
     }
 
-    getRates = createActionThunk(GET_RATES, () => this.api.getLatest())
+    getRates = createActionThunk(GET_RATES, ({getState}) => this.api.getLatest(getState().currencies))
+
+    addRate = createActionThunk(ADD_RATE, (curencyName, {getState}) => {
+        const state = getState();
+
+        return this.api.getLatest([
+            ...state.currencies,
+            curencyName
+        ]).then(response => {
+            return {
+                ...response,
+                currencyToAdd: curencyName
+            }
+        });
+    })
 }

@@ -1,4 +1,4 @@
-const currencies = [
+export const currencies = [
     "AUD",
     "BGN",
     "BRL",

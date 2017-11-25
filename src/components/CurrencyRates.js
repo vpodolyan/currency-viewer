@@ -17,15 +17,12 @@ export class CurrencyRates extends React.Component {
             <div>
                 {
                     this.props.rates.map(rate => (
-                        <RateWrapper>
-                            <Rate
-                                key={shortid.generate()}
-                                rate={rate}
-                            />
+                        <RateWrapper key={shortid.generate()}>
+                            <Rate rate={rate} />
                         </RateWrapper>
                     ))
                 }
-                <RateWrapper>
+                <RateWrapper key={shortid.generate()}> 
                     <NewRate />
                 </RateWrapper>
             </div>
