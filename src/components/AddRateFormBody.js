@@ -43,7 +43,7 @@ export class AddRateFormBody extends React.Component {
                 <div>
                     <button onClick={this.onRateAddClick}>
                         +
-            </button>
+                    </button>
                 </div>
             </div>
         )

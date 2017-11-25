@@ -1,5 +1,5 @@
 import {CurrencyApi} from '../api/CurrencyApi';
-import {GET_RATES, ADD_RATE} from '../actions/types';
+import {GET_RATES, ADD_RATE, DELETE_RATE} from '../actions/types';
 import {createActionThunk} from 'redux-thunk-actions';
 
 export class RatesActions {
@@ -21,5 +21,12 @@ export class RatesActions {
                 currencyToAdd: curencyName
             }
         });
+    })
+
+    deleteRate = (currencyName) => ({
+        type: DELETE_RATE,
+        payload: {
+            currencyToDelete: currencyName
+        }
     })
 }

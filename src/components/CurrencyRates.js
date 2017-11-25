@@ -18,7 +18,10 @@ export class CurrencyRates extends React.Component {
                 {
                     this.props.rates.map(rate => (
                         <RateWrapper key={shortid.generate()}>
-                            <Rate rate={rate} />
+                            <Rate
+                                rate={rate}
+                                onCloseClick={this.props.deleteRate}
+                            />
                         </RateWrapper>
                     ))
                 }
@@ -32,5 +35,6 @@ export class CurrencyRates extends React.Component {
 
 CurrencyRates.PropTypes = {
     rates: PropTypes.arrayOf(ratePropTypes),
-    getRates: PropTypes.func.isRequired
+    getRates: PropTypes.func.isRequired,
+    deleteRate: PropTypes.func.isRequired
 }

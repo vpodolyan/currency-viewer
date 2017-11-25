@@ -11,7 +11,8 @@ const mapDispatchToProps = (dispatch) => {
     const actions = new RatesActions(new CurrencyApi())
 
     return {
-        getRates: () => dispatch(actions.getRates())
+        getRates: () => dispatch(actions.getRates()),
+        deleteRate: (currencyName) => dispatch(actions.deleteRate(currencyName))
     }
 }
 

@@ -1,5 +1,5 @@
 import {ratesReducer} from "./ratesReducer";
-import {GET_RATES, SUCCEEDED, ADD_RATE} from '../actions/types';
+import {GET_RATES, SUCCEEDED, ADD_RATE, DELETE_RATE} from '../actions/types';
 import { currencies } from "../consts";
 
 describe('rateReducer tests', () => {
@@ -50,7 +50,7 @@ describe('rateReducer tests', () => {
         expect(ratesReducer(initialState, {type: `${GET_RATES}${SUCCEEDED}`, payload})).toEqual(expectedState);
     })
 
-    it('add new currency to state on ADD_RATE_SUCCCEDED', () => {
+    it('adds new currency rate to state on ADD_RATE_SUCCCEDED action', () => {
         initialState.currencies = ['USD'];
 
         const newCurrency = 'CHF';
@@ -81,5 +81,21 @@ describe('rateReducer tests', () => {
         }
 
         expect(ratesReducer(initialState, {type: `${ADD_RATE}${SUCCEEDED}`, payload})).toEqual(expectedState);
+    })
+
+    it('removes the currency rate from state on DELETE_RATE action', () => {
+        initialState.currencies = ['USD'];
+
+        const currencyToDelete = 'USD';
+        const payload = {
+            currencyToDelete
+        }
+
+        const expectedState = {
+            rates: [],
+            currencies: []
+        }
+
+        expect(ratesReducer(initialState, {type: DELETE_RATE, payload})).toEqual(expectedState);
     })
 })

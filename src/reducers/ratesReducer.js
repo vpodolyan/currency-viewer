@@ -1,26 +1,5 @@
-import {GET_RATES, SUCCEEDED, ADD_RATE} from '../actions/types';
+import {GET_RATES, SUCCEEDED, ADD_RATE, DELETE_RATE} from '../actions/types';
 import {extractFixerIoRates} from '../utils';
-
-// rates: [{
-//     base: 'RUB',
-//     currency: 'USD',
-//     value: 59
-// },
-// {
-//     base: 'RUB',
-//     currency: 'EUR',
-//     value: 70
-// },
-// {
-//     base: 'RUB',
-//     currency: 'EUR',
-//     value: 70
-// },
-// {
-//     base: 'RUB',
-//     currency: 'EUR',
-//     value: 70
-// }],
 
 const initialState = {
     rates: [],
@@ -46,5 +25,14 @@ export const ratesReducer = (state = initialState, action) => {
         }
     }
 
-    return state; 
+    if (action.type === DELETE_RATE) {
+        const {payload = {}} = action;
+        return {
+            ...state,
+            rates: state.rates.filter(rate => rate.currency !== payload.currencyToDelete),
+            currencies: state.currencies.filter(currency => currency !== payload.currencyToDelete)
+        }
+    }
+
+    return state;
 }
