@@ -17,7 +17,8 @@ export const ratesReducer = (state = initialState, action) => {
         return {
             ...state,
             rates: payload.rates,
-            currencies: [...state.currencies, payload.currencyToAdd]
+            currencies: [...state.currencies, payload.currencyToAdd],
+            date: payload.date
         }
     }
 

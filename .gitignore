@@ -70,4 +70,4 @@ typings/
 *.code-workspace
 
 # styles
-*.css
+src/*.css
