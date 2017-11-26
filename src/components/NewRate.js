@@ -24,7 +24,10 @@ export class NewRate extends React.Component {
             <div className="rate new">
                 <div className="body" onClick={this.onBodyClick}>
                     {this.state.isEditModeOn ?
-                        <AddRateForm onRateAdd={this.onAddComplete}/> :
+                        <AddRateForm 
+                            onRateAdd={this.onAddComplete}
+                            onCloseClick={this.onAddComplete}
+                        /> :
                         <AddRateButton onClick={this.onAddRateButtonClick} />}
                 </div>
             </div>

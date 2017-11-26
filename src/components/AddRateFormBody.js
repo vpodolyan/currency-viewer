@@ -5,7 +5,8 @@ import {currencies} from '../consts';
 
 export class AddRateFormBody extends React.Component {
     static propTypes = {
-        onRateAdd: PropTypes.func
+        onRateAdd: PropTypes.func,
+        onCloseClick: PropTypes.func
     }
 
     state = { 
@@ -31,12 +32,18 @@ export class AddRateFormBody extends React.Component {
             .push(currencies.map(currency => <option key={currency} value={currency}>{currency}</option>));
 
         return (
-            <select
-                onChange={this.onCurrencySelectChange}
-                value={this.state.selectedCurrency}
-            >
-                {currencySelectOptions}
-            </select>
+            <div>
+                <select
+                    onChange={this.onCurrencySelectChange}
+                    value={this.state.selectedCurrency}
+                >
+                    {currencySelectOptions}
+                </select>
+                <div
+                    className="close"
+                    onClick={this.props.onCloseClick}
+                ></div>
+            </div>
         )
     }
 }
