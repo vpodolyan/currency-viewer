@@ -3,7 +3,7 @@ import {GET_RATES, ADD_RATE, DELETE_RATE} from '../actions/types';
 import {createActionThunk} from 'redux-thunk-actions';
 
 import Storage from '../utils/Storage';
-import {localStorageKey} from '../consts';
+import {localStorageKey, initialState} from '../consts';
 import {isDateLessThanToday, handleFixerApiResponse} from '../utils/index';
 
 export class RatesActions {
@@ -16,7 +16,13 @@ export class RatesActions {
 
         const storedState = localStorage.get(localStorageKey);
 
-        if (!storedState || !storedState.date || isDateLessThanToday(storedState.date)) {          
+        if (!storedState || !storedState.date || isDateLessThanToday(storedState.date)) {
+            const state = getState().currencies;
+            
+            if (!state.rates || state.rates.length === 0) {
+                return initialState;
+            }
+
             const response = await this.api.getLatest(getState().currencies);
             return handleFixerApiResponse(response);
         }

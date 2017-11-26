@@ -36,5 +36,5 @@ export const localStorageKey = 'currency-viewer';
 
 export const initialState = {
     rates: [],
-    currencies: ['USD', 'EUR']
+    currencies: []
 }
