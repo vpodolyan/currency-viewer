@@ -34,6 +34,7 @@ export class AddRateFormBody extends React.Component {
         return (
             <div>
                 <select
+                    className="currency-select"
                     onChange={this.onCurrencySelectChange}
                     value={this.state.selectedCurrency}
                 >
