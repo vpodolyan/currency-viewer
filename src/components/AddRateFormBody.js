@@ -13,17 +13,15 @@ export class AddRateFormBody extends React.Component {
     }
 
     onCurrencySelectChange = (event) => {
+        const selectedCurrency = event.target.value;
+
         this.setState({
-            selectedCurrency: event.target.value
+            selectedCurrency
+        }, () => {
+            if (selectedCurrency && selectedCurrency.length > 0) {
+                this.props.onRateAdd(selectedCurrency)
+            }
         })
-    }
-
-    onRateAddClick = () => {
-        const {selectedCurrency} = this.state;
-
-        if (selectedCurrency && selectedCurrency.length > 0) {
-            this.props.onRateAdd(selectedCurrency)
-        }
     }
 
     render() {
@@ -33,19 +31,12 @@ export class AddRateFormBody extends React.Component {
             .push(currencies.map(currency => <option key={currency} value={currency}>{currency}</option>));
 
         return (
-            <div>
-                <select
-                    onChange={this.onCurrencySelectChange}
-                    value={this.state.selectedCurrency}
-                >
-                    {currencySelectOptions}
-                </select>
-                <div>
-                    <button onClick={this.onRateAddClick}>
-                        +
-                    </button>
-                </div>
-            </div>
+            <select
+                onChange={this.onCurrencySelectChange}
+                value={this.state.selectedCurrency}
+            >
+                {currencySelectOptions}
+            </select>
         )
     }
 }
