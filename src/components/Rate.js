@@ -6,7 +6,7 @@ export const Rate = ({rate, onCloseClick}) => {
     const handleCloseClick = () => onCloseClick(rate.currency);
 
     return (
-        <div className="rate">
+        <div className="rate card">
             <div className="body">
                 <div
                     className="close"

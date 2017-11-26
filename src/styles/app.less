@@ -8,8 +8,11 @@
 .rate {
     padding-top: 100%;
     position: relative;
-    border: 1px solid black;
     border-radius: 4px;
+
+    &.card {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
 
     .body {
         position: absolute;
@@ -28,7 +31,7 @@
     }
 
     &.new {
-        border-style: dashed;
+        border: 1px dashed darkgray;
         cursor: pointer;
 
         &:hover {
