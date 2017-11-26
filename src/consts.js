@@ -31,3 +31,10 @@ export const currencies = [
     "USD",
     "ZAR"
 ];
+
+export const localStorageKey = 'currency-viewer';
+
+export const initialState = {
+    rates: [],
+    currencies: ['USD', 'EUR']
+}

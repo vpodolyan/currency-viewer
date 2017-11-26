@@ -7,6 +7,7 @@ describe('rateReducer tests', () => {
 
     beforeEach(() => {
         return initialState = {
+            date: '2017-11-23', 
             rates: [{
                 base: 'RUB',
                 currency: 'USD',
@@ -24,27 +25,49 @@ describe('rateReducer tests', () => {
         const payload = {
             base: 'RUB',
             date: '2017-11-23',
-            rates: {
-                USD: 0.017113,
-                EUR: 0.014444
-            }
+            rates: [
+                {
+                    base: 'RUB',
+                    currency: 'USD',
+                    value: '58.44'
+                },
+                {
+                    base: 'RUB',
+                    currency: 'EUR',
+                    value: '69.23'
+                }
+            ]
         }
 
-        const expectedRates = [
-            {
-                base: 'RUB',
-                currency: 'USD',
-                value: '58.44'
-            },
-            {
-                base: 'RUB',
-                currency: 'EUR',
-                value: '69.23'
-            }
-        ]
+        const expectedState = {
+            date: payload.date,
+            rates: payload.rates
+        }
+
+        expect(ratesReducer(initialState, {type: `${GET_RATES}${SUCCEEDED}`, payload})).toEqual(expectedState);
+    })
+
+    it('refreshs the rates date on GET_RATES action', () => {
+        const payload = {
+            base: 'RUB',
+            date: '2017-11-24',
+            rates: [
+                {
+                    base: 'RUB',
+                    currency: 'USD',
+                    value: '58.44'
+                },
+                {
+                    base: 'RUB',
+                    currency: 'EUR',
+                    value: '69.23'
+                }
+            ]  
+        }
 
         const expectedState = {
-            rates: expectedRates
+            date: payload.date,
+            rates: payload.rates
         }
 
         expect(ratesReducer(initialState, {type: `${GET_RATES}${SUCCEEDED}`, payload})).toEqual(expectedState);
@@ -57,19 +80,11 @@ describe('rateReducer tests', () => {
         const payload = {
             base: 'RUB',
             date: '2017-11-23',
-            rates: {
-                USD: 0.017113,
-                CHF: 0.016773
-            },
-            currencyToAdd: newCurrency
-        }
-
-        const expectedState = {
             rates: [
                 {
                     base: 'RUB',
                     currency: 'USD',
-                    value: (1 / payload.rates.USD).toFixed(2)
+                    value: '58'
                 },
                 {
                     base: 'RUB',
@@ -77,6 +92,12 @@ describe('rateReducer tests', () => {
                     value: '59.62'
                 }
             ],
+            currencyToAdd: newCurrency
+        }
+
+        const expectedState = {
+            date: payload.date,
+            rates: payload.rates,
             currencies: [ ...initialState.currencies, payload.currencyToAdd]
         }
 
@@ -92,6 +113,7 @@ describe('rateReducer tests', () => {
         }
 
         const expectedState = {
+            date: initialState.date,
             rates: [],
             currencies: []
         }

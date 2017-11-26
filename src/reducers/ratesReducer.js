@@ -1,10 +1,5 @@
 import {GET_RATES, SUCCEEDED, ADD_RATE, DELETE_RATE} from '../actions/types';
-import {extractFixerIoRates} from '../utils';
-
-const initialState = {
-    rates: [],
-    currencies: ['USD', 'EUR']
-}
+import {initialState} from '../consts';
 
 export const ratesReducer = (state = initialState, action) => {
 
@@ -12,7 +7,8 @@ export const ratesReducer = (state = initialState, action) => {
         const {payload = {}} = action;
         return {
             ...state,
-            rates: extractFixerIoRates(payload)
+            rates: payload.rates,
+            date: payload.date
         }
     }
 
@@ -20,7 +16,7 @@ export const ratesReducer = (state = initialState, action) => {
         const {payload = {}} = action;
         return {
             ...state,
-            rates: extractFixerIoRates(payload),
+            rates: payload.rates,
             currencies: [...state.currencies, payload.currencyToAdd]
         }
     }
